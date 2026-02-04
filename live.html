@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoArena — Disputa ao Vivo</title>
+    <style>
+      :root {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #0b1020;
+        --card: #121a2f;
+        --ink: #f8fafc;
+        --muted: #94a3b8;
+        --primary: #38bdf8;
+        --success: #22c55e;
+        --danger: #ef4444;
+        --warning: #f59e0b;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, #1f2a44, #0b1020 60%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      .layout {
+        display: grid;
+        gap: 20px;
+      }
+
+      @media (min-width: 960px) {
+        .layout {
+          grid-template-columns: 2fr 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 14px 40px rgba(8, 13, 27, 0.6);
+      }
+
+      .question-title {
+        font-size: 1.8rem;
+        margin: 0 0 16px;
+      }
+
+      .timer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+      }
+
+      .bar {
+        flex: 1;
+        height: 10px;
+        background: #1d2740;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .bar span {
+        display: block;
+        height: 100%;
+        width: 48%;
+        background: var(--warning);
+      }
+
+      .answers {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 18px;
+      }
+
+      .answer {
+        border-radius: 16px;
+        padding: 18px;
+        font-weight: 600;
+        background: #1b243b;
+        border: 1px solid transparent;
+      }
+
+      .answer.correct {
+        border-color: var(--success);
+      }
+
+      .answer.wrong {
+        border-color: var(--danger);
+      }
+
+      .sidebar {
+        display: grid;
+        gap: 16px;
+      }
+
+      .rank-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 12px;
+        background: #1b243b;
+        border-radius: 12px;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <section class="card">
+        <div class="meta">Pergunta 4/10 • Cartografia • Nível 2</div>
+        <h1 class="question-title">Qual é a função das linhas de latitude?</h1>
+        <div class="timer">
+          <span>⏱️ 12s</span>
+          <div class="bar"><span></span></div>
+        </div>
+        <div class="answers">
+          <div class="answer correct">Indicar a posição norte-sul na Terra</div>
+          <div class="answer">Mostrar a divisão de fusos horários</div>
+          <div class="answer wrong">Representar altitudes do relevo</div>
+          <div class="answer">Medir densidade populacional</div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h2>Placar ao vivo</h2>
+          <div class="rank-item">
+            <strong>Equipe Atlas</strong>
+            <span>1.420 pts</span>
+          </div>
+          <div class="rank-item">
+            <strong>Equipe Horizonte</strong>
+            <span>1.120 pts</span>
+          </div>
+          <div class="rank-item">
+            <strong>Equipe Vento Sul</strong>
+            <span>980 pts</span>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Distribuição das respostas</h2>
+          <p class="meta">A: 52% • B: 18% • C: 12% • D: 18%</p>
+          <div class="bar"><span style="width: 52%; background: var(--primary);"></span></div>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>
