@@ -64,6 +64,13 @@ e repita os passos acima. Essa é a forma mais simples de evitar o erro de compi
   1. Instale as dependências com `python -m pip install -r requirements.txt`.
   2. Rode `python -m uvicorn app.main:app --reload`.
 
+#### Gerar executável (instalação limpa)
+Se você pretende distribuir um instalador:
+- **Interface HTML**: pode ser empacotada com Electron ou Tauri para gerar um executável.
+- **API**: pode ser empacotada com PyInstaller (Windows) usando `python -m pip install pyinstaller`.
+
+Essas etapas exigem ajustes específicos de build e não estão automatizadas neste repositório.
+
 ### Endpoints principais
 - `POST /users` — cria usuário (professor, aluno, moderador).
 - `POST /classrooms` — cria turma.
