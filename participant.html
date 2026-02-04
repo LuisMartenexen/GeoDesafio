@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoArena — Participantes</title>
+    <style>
+      :root {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #0f172a;
+        --card: #111c33;
+        --ink: #f8fafc;
+        --muted: #94a3b8;
+        --primary: #38bdf8;
+        --success: #22c55e;
+        --danger: #ef4444;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, #1e293b, #0f172a 55%);
+        color: var(--ink);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .shell {
+        width: min(920px, 100%);
+        display: grid;
+        gap: 20px;
+      }
+
+      header {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.6rem;
+      }
+
+      .status {
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--primary);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+      }
+
+      .question {
+        font-size: 1.4rem;
+        margin: 0 0 12px;
+      }
+
+      .timer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+
+      .bar {
+        flex: 1;
+        height: 8px;
+        background: #1f2a44;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .bar span {
+        display: block;
+        height: 100%;
+        width: 60%;
+        background: var(--primary);
+      }
+
+      .answers {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .answer {
+        border-radius: 14px;
+        border: 1px solid transparent;
+        padding: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        background: #1b2743;
+      }
+
+      .answer.correct {
+        border-color: var(--success);
+      }
+
+      .answer.wrong {
+        border-color: var(--danger);
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .score {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <h1>Equipe Horizonte</h1>
+          <div class="status">Sala 8ºA • Rodada 4/10</div>
+        </div>
+        <div>
+          <div class="score">XP 1.240</div>
+          <div class="footer">Sequência: 3 acertos</div>
+        </div>
+      </header>
+
+      <section class="card">
+        <p class="question">Qual fenômeno aumenta as chuvas no Sul do Brasil?</p>
+        <div class="timer">
+          <span>⏱️ 18s restantes</span>
+          <div class="bar"><span></span></div>
+        </div>
+        <div class="answers">
+          <button class="answer correct">El Niño</button>
+          <button class="answer">La Niña</button>
+          <button class="answer wrong">Monções Asiáticas</button>
+          <button class="answer">Ventos Alísios</button>
+        </div>
+      </section>
+
+      <section class="card footer">
+        <span>Próximo bônus: +5s disponível</span>
+        <span>Tempo médio: 12s</span>
+      </section>
+    </div>
+  </body>
+</html>
