@@ -10,12 +10,13 @@ Se você quer apenas visualizar a interface, basta abrir o arquivo `index.html` 
 Este repositório contém uma **API inicial** em FastAPI + SQLite para servir como base do sistema.
 
 ### Requisitos
-- Python 3.11+
+- Python 3.11 ou 3.12 (recomendado para Windows)
 
 ### Instalação (Windows — PowerShell)
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
@@ -26,6 +27,7 @@ python -m pip install -r requirements.txt
 ```bat
 python -m venv .venv
 .venv\Scripts\activate
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
@@ -33,13 +35,19 @@ python -m pip install -r requirements.txt
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
 ### Executar
 ```bash
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
+
+### Dica para Windows (erro com Rust/pydantic-core)
+Se você estiver usando **Python 3.14**, o `pip` pode tentar compilar o `pydantic-core`
+e exigir Rust/Cargo. Nesse caso, instale **Python 3.11 ou 3.12** (que têm wheels prontos)
+e repita os passos acima. Essa é a forma mais simples de evitar o erro de compilação.
 
 ### Endpoints principais
 - `POST /users` — cria usuário (professor, aluno, moderador).
