@@ -49,6 +49,13 @@ Se você estiver usando **Python 3.14**, o `pip` pode tentar compilar o `pydanti
 e exigir Rust/Cargo. Nesse caso, instale **Python 3.11 ou 3.12** (que têm wheels prontos)
 e repita os passos acima. Essa é a forma mais simples de evitar o erro de compilação.
 
+#### Checklist rápido (Windows)
+1. Confirme a versão: `python --version` (deve ser 3.11/3.12).
+2. Confirme que o venv está ativo (o prompt deve mostrar `(.venv)`).
+3. Rode `python -m pip install -r requirements.txt` sem erros.
+4. Se ainda aparecer “No module named uvicorn”, rode:
+   `python -m pip install uvicorn fastapi`.
+
 ### Endpoints principais
 - `POST /users` — cria usuário (professor, aluno, moderador).
 - `POST /classrooms` — cria turma.
