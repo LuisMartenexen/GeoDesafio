@@ -3,17 +3,37 @@
 ## Descrição
 O **GeoArena** é uma plataforma web + mobile voltada para uso em sala de aula, combinando um banco de questões de Geografia com um modo de disputa ao vivo. O professor controla as rodadas, e os grupos respondem em tempo real.
 
+## Como rodar (HTML)
+Se você quer apenas visualizar a interface, basta abrir o arquivo `index.html` no navegador.
+
 ## Como rodar (API inicial)
 Este repositório contém uma **API inicial** em FastAPI + SQLite para servir como base do sistema.
 
 ### Requisitos
 - Python 3.11+
 
-### Instalação
+### Instalação (Windows — PowerShell)
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+> Se a execução de scripts estiver bloqueada no PowerShell, rode:
+> `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+
+### Instalação (Windows — Prompt de Comando)
+```bat
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+```
+
+### Instalação (macOS/Linux)
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### Executar
@@ -36,7 +56,7 @@ uvicorn app.main:app --reload
 #### Formato CSV (exemplo)
 ```csv
 theme,subtheme,difficulty,type,statement,explanation,tags,source,status
-Cartografia,Escala,1,multiple_choice,\"O que é escala cartográfica?\",\"Relação entre distância no mapa e na realidade.\",\"6º ano\",BNCC,approved
+Cartografia,Escala,1,multiple_choice,"O que é escala cartográfica?","Relação entre distância no mapa e na realidade.","6º ano",BNCC,approved
 ```
 
 ## Objetivos principais
