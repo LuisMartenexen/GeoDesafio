@@ -54,7 +54,15 @@ e repita os passos acima. Essa é a forma mais simples de evitar o erro de compi
 2. Confirme que o venv está ativo (o prompt deve mostrar `(.venv)`).
 3. Rode `python -m pip install -r requirements.txt` sem erros.
 4. Se ainda aparecer “No module named uvicorn”, rode:
-   `python -m pip install uvicorn fastapi`.
+   `python -m pip install -r requirements.txt` novamente.
+5. Se você instalou apenas `uvicorn`/`fastapi`, rode:
+   `python -m pip install sqlalchemy pydantic python-multipart`.
+
+#### Como carregar a aplicação
+- **HTML (interface)**: abra `index.html` diretamente no navegador.
+- **API (backend)**:
+  1. Instale as dependências com `python -m pip install -r requirements.txt`.
+  2. Rode `python -m uvicorn app.main:app --reload`.
 
 ### Endpoints principais
 - `POST /users` — cria usuário (professor, aluno, moderador).
