@@ -3,6 +3,42 @@
 ## Descrição
 O **GeoArena** é uma plataforma web + mobile voltada para uso em sala de aula, combinando um banco de questões de Geografia com um modo de disputa ao vivo. O professor controla as rodadas, e os grupos respondem em tempo real.
 
+## Como rodar (API inicial)
+Este repositório contém uma **API inicial** em FastAPI + SQLite para servir como base do sistema.
+
+### Requisitos
+- Python 3.11+
+
+### Instalação
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Executar
+```bash
+uvicorn app.main:app --reload
+```
+
+### Endpoints principais
+- `POST /users` — cria usuário (professor, aluno, moderador).
+- `POST /classrooms` — cria turma.
+- `POST /questions` — cadastra questão com alternativas.
+- `POST /questions/import` — importa questões via CSV.
+- `POST /sessions` — cria sessão (aula).
+- `POST /sessions/{session_id}/questions` — monta a lista de perguntas da sessão.
+- `POST /groups` — cria grupo dentro da sessão.
+- `POST /answers` — registra resposta.
+- `GET /sessions/{session_id}/ranking` — ranking (pontos por acertos).
+- `GET /sessions/{session_id}/themes` — resumo de acertos/erros por tema.
+
+#### Formato CSV (exemplo)
+```csv
+theme,subtheme,difficulty,type,statement,explanation,tags,source,status
+Cartografia,Escala,1,multiple_choice,\"O que é escala cartográfica?\",\"Relação entre distância no mapa e na realidade.\",\"6º ano\",BNCC,approved
+```
+
 ## Objetivos principais
 - Organizar um banco de questões por temas de Geografia.
 - Classificar a dificuldade por estrelas/pontos (1 a 5).
