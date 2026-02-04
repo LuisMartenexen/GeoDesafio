@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoArena — Plataforma de Geografia</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --ink: #1e2a3a;
+        --muted: #607088;
+        --primary: #2f6fed;
+        --accent: #f39c12;
+        --success: #2ecc71;
+        --danger: #e74c3c;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+      }
+
+      header {
+        background: linear-gradient(120deg, #2f6fed, #4b8bff);
+        color: white;
+        padding: 48px 24px;
+      }
+
+      header h1 {
+        margin: 0 0 8px;
+        font-size: 2.4rem;
+      }
+
+      header p {
+        max-width: 720px;
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: -32px auto 40px;
+        padding: 0 24px 32px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      @media (min-width: 900px) {
+        .grid.cols-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid.cols-2 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(30, 42, 58, 0.08);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: rgba(47, 111, 237, 0.1);
+        color: var(--primary);
+        font-size: 0.75rem;
+        border-radius: 999px;
+      }
+
+      .pill {
+        display: inline-flex;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background: #e8edf7;
+        color: var(--muted);
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      .section-title {
+        margin: 24px 0 12px;
+        font-size: 1.4rem;
+      }
+
+      .profile {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .profile strong {
+        font-size: 1.05rem;
+      }
+
+      .stats {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
+      .stat {
+        background: #f1f4fb;
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .stat h3 {
+        margin: 0 0 6px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .stat p {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .timeline {
+        border-left: 2px solid #d9e1f2;
+        padding-left: 16px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 12px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+
+      .question-card {
+        border: 1px solid #e6ebf5;
+        border-radius: 14px;
+        padding: 16px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .question-card header {
+        background: none;
+        color: inherit;
+        padding: 0;
+      }
+
+      .question-card .options {
+        display: grid;
+        gap: 8px;
+      }
+
+      .option {
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: #f4f7fd;
+        border: 1px solid transparent;
+      }
+
+      .option.correct {
+        border-color: var(--success);
+        background: rgba(46, 204, 113, 0.15);
+      }
+
+      .option.wrong {
+        border-color: var(--danger);
+        background: rgba(231, 76, 60, 0.12);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 24px;
+        color: var(--muted);
+      }
+
+      .badge-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .badge {
+        background: #fef6e7;
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .ranking {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .ranking th,
+      .ranking td {
+        text-align: left;
+        padding: 10px 8px;
+        border-bottom: 1px solid #e6ebf5;
+      }
+
+      .ranking th {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        border: none;
+        background: var(--primary);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .cta-secondary {
+        background: white;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <span class="tag">🌎 GeoArena</span>
+        <h1>Plataforma de Quiz e Disputa ao Vivo em Geografia</h1>
+        <p>
+          Organize um banco de questões inteligente, conduza partidas por grupos e acompanhe
+          relatórios de desempenho em tempo real.
+        </p>
+        <div class="actions" style="margin-top: 20px;">
+          <button class="cta">Criar sessão</button>
+          <button class="cta cta-secondary">Explorar banco</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="grid cols-3" aria-label="Resumo">
+        <div class="card">
+          <h2>Banco de Questões</h2>
+          <p>
+            Centralize milhares de questões com temas, subtemas, tags BNCC e revisão por etapas.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <h3>Temas ativos</h3>
+              <p>12</p>
+            </div>
+            <div class="stat">
+              <h3>Questões aprovadas</h3>
+              <p>3.420</p>
+            </div>
+            <div class="stat">
+              <h3>Sugestões pendentes</h3>
+              <p>58</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Disputa em Sala</h2>
+          <p>
+            Sessões configuráveis com tempo, dificuldade e modo de resposta por grupo.
+          </p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>PIN da sessão:</strong> 829-145
+            </div>
+            <div class="timeline-item">
+              <strong>Tempo por pergunta:</strong> 30s
+            </div>
+            <div class="timeline-item">
+              <strong>Modo:</strong> todos votam (maioria)
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Gamificação</h2>
+          <p>XP, streaks e badges incentivam participação contínua.</p>
+          <div class="badge-grid">
+            <div class="badge">🏅 Mestre da Cartografia</div>
+            <div class="badge">⚡ Velocista</div>
+            <div class="badge">🔥 Sequência 5x</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Perfis de usuário</h2>
+        <div class="grid cols-3">
+          <div class="card profile">
+            <span class="pill">Professor</span>
+            <strong>Admin da turma</strong>
+            <ul>
+              <li>Cria turmas e sessões.</li>
+              <li>Seleciona temas e dificuldade.</li>
+              <li>Analisa relatórios por grupo e aluno.</li>
+            </ul>
+          </div>
+          <div class="card profile">
+            <span class="pill">Aluno</span>
+            <strong>Jogador</strong>
+            <ul>
+              <li>Entra com PIN ou QR Code.</li>
+              <li>Participa em grupos.</li>
+              <li>Acompanha XP e metas pessoais.</li>
+            </ul>
+          </div>
+          <div class="card profile">
+            <span class="pill">Moderador</span>
+            <strong>Coordenação</strong>
+            <ul>
+              <li>Audita conteúdo.</li>
+              <li>Garante qualidade do banco.</li>
+              <li>Apoia professores.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Exemplo de questão</h2>
+        <div class="question-card">
+          <header>
+            <span class="tag">Cartografia • Nível 1</span>
+            <h3>O que é escala cartográfica?</h3>
+          </header>
+          <div class="options">
+            <div class="option correct">A. Relação entre distância no mapa e distância real.</div>
+            <div class="option">B. Representação de massas de ar.</div>
+            <div class="option">C. Conjunto de fusos horários.</div>
+            <div class="option wrong">D. Representação de densidade populacional.</div>
+          </div>
+          <p><strong>Explicação:</strong> escala indica a proporção entre o real e o representado.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Ranking da sessão</h2>
+        <div class="card">
+          <table class="ranking">
+            <thead>
+              <tr>
+                <th>Posição</th>
+                <th>Grupo</th>
+                <th>Pontos</th>
+                <th>Acertos</th>
+                <th>Tempo médio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Equipe Atlas</td>
+                <td>1.420</td>
+                <td>18</td>
+                <td>12s</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Equipe Vento Sul</td>
+                <td>1.210</td>
+                <td>16</td>
+                <td>15s</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Equipe Horizonte</td>
+                <td>980</td>
+                <td>14</td>
+                <td>17s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Feito para potencializar aulas de Geografia com tecnologia e competição saudável.
+    </footer>
+  </body>
+</html>
